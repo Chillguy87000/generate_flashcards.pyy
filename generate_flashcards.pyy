@@ -1,0 +1,53 @@
+from genanki import Deck, Note, Model, Package
+
+# Définir un modèle pour les flashcards Anki
+model = Model(
+    1607392319,
+    "Flashcard Model",
+    fields=[
+        {"name": "Question"},
+        {"name": "Answer"}
+    ],
+    templates=[
+        {
+            "name": "Card 1",
+            "qfmt": "{{Question}}",
+            "afmt": "{{FrontSide}}<hr id='answer'>{{Answer}}",
+        },
+    ],
+)
+
+# Créer un deck pour les flashcards
+deck = Deck(
+    2059400110,
+    "Sociologie : La sociologie comme science"
+)
+
+# Ajouter les cartes au deck
+flashcards = [
+    ("Quel est le principe fondateur de la sociologie ?", "Remettre en cause ce qui semble évident et le sens commun."),
+    ("Pourquoi la sociologie peut-elle sembler paradoxale ?", "Elle est familière car elle traite de thèmes connus comme l'intégration et la mobilité, mais étrangère car elle est une science récente et théorique."),
+    ("Quel type de science est la sociologie ?", "Une science empirique et objective."),
+    ("Quels outils utilise la sociologie pour enquêter ?", "Entretiens, observations, questionnaires, données historiques ou statistiques."),
+    ("Pourquoi la neutralité est-elle essentielle en sociologie ?", "Pour éviter les jugements moraux et expliquer les actes de manière rationnelle."),
+    ("Que signifie 'considérer les faits sociaux comme des choses' selon Durkheim ?", "Les analyser comme des phénomènes extérieurs et indépendants des individus."),
+    ("Quels sont les deux facteurs principaux du suicide selon Durkheim ?", "Le degré d'intégration sociale et le niveau de régulation sociale."),
+    ("Quels sont les quatre types de suicide identifiés par Durkheim ?", "Égoïste, altruiste, fataliste, anomique."),
+    ("Pourquoi la sociologie est-elle un espace de controverses ?", "Parce qu'elle contient des théories parfois opposées tout en reposant sur une méthodologie commune."),
+    ("En quoi la sociologie se distingue-t-elle de l'anthropologie ?", "L'anthropologie étudie les sociétés 'exotiques', tandis que la sociologie analyse les sociétés modernes."),
+    ("Quelle est la critique de François Simiand sur l'histoire ?", "L'histoire est prisonnière de trois idoles : la chronologie, la politique et l'individu."),
+    ("Pourquoi la sociologie critique-t-elle la vision utilitariste ?", "Elle montre que des savoirs désintéressés peuvent avoir des impacts positifs à long terme."),
+    ("Quel est l'objectif ultime de la sociologie ?", "Améliorer les conditions de vie pour le plus grand nombre et œuvrer pour plus d'égalité."),
+    ("Pourquoi Durkheim est-il considéré comme un des pères fondateurs de la sociologie ?", "Parce qu’il a systématisé une méthode rigoureuse et objective, notamment par ses travaux sur les faits sociaux et le suicide."),
+    ("Pourquoi la sociologie est-elle importante dans les débats publics ?", "Elle aide à comprendre les mécanismes sociaux sous-jacents et à orienter les politiques publiques.")
+]
+
+for question, answer in flashcards:
+    note = Note(
+        model=model,
+        fields=[question, answer]
+    )
+    deck.add_note(note)
+
+# Sauvegarder le fichier Anki au format APKG
+Package(deck).write_to_file("Sociologie_La_Sociologie_Comme_Science.apkg")
